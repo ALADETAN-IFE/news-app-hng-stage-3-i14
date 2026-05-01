@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Core blues from the Figma references */
+  --color-bg: #0C0D0F;
+  --color-primary-text: #F0F2F5;
+  --color-text-grey: #9498A2;
+  --color-red: #EE343B;
+  --color-border: #27292D;
+  --color-border: #0C0D0FCC;
+}
