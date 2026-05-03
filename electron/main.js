@@ -14,19 +14,55 @@ function createWindow() {
     minWidth: 900,
     minHeight: 600,
     title: 'NEWSROOM',
+    icon: path.join(__dirname, '../assets/images/icon_512.png'),
     webPreferences: { 
       contextIsolation: true,
-      nodeIntegration: false
+      nodeIntegration: false,
+      webSecurity: false // Temporary to rule out CORS issues with fonts
     }
   })
 
   // Set up the custom protocol handler
-  protocol.handle('app', (request) => {
-    const urlPath = new URL(request.url).pathname
-    // When packaged, dist is in the same folder as main.js
+  protocol.handle('app', async (request) => {
+    const parsedUrl = new URL(request.url)
+    let urlPath = parsedUrl.pathname
+    
+    // Normalize path: remove leading slash and any ./ or ../ parts
+    urlPath = path.normalize(urlPath).replace(/^[\\\/]+/, '')
+    if (!urlPath || urlPath === '.') urlPath = 'index.html'
+
     const baseDir = app.isPackaged ? __dirname : path.join(__dirname, '..')
-    const filePath = path.join(baseDir, 'dist', urlPath === '/' ? 'index.html' : urlPath)
-    return net.fetch(url.pathToFileURL(filePath).toString())
+    const filePath = path.join(baseDir, 'dist', urlPath)
+    
+    const response = await net.fetch(url.pathToFileURL(filePath).toString())
+    const extension = path.extname(filePath).toLowerCase()
+    
+    // Manually set content-type for problematic files like fonts
+    const mimeTypes = {
+      '.js': 'text/javascript',
+      '.css': 'text/css',
+      '.html': 'text/html',
+      '.ttf': 'font/ttf',
+      '.otf': 'font/otf',
+      '.woff': 'font/woff',
+      '.woff2': 'font/woff2',
+      '.png': 'image/png',
+      '.jpg': 'image/jpeg',
+      '.jpeg': 'image/jpeg',
+      '.svg': 'image/svg+xml'
+    }
+
+    const contentType = mimeTypes[extension] || response.headers.get('content-type')
+    
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: {
+        ...Object.fromEntries(response.headers.entries()),
+        'Content-Type': contentType,
+        'Access-Control-Allow-Origin': '*' // Ensure CORS is allowed
+      }
+    })
   })
 
   win.loadURL('app://./')

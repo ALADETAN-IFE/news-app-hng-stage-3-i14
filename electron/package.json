@@ -21,6 +21,7 @@
       }
     ],
     "win": {
+      "icon": "../assets/images/icon_512.png",
       "target": [{ "target": "portable", "arch": ["x64"] }],
       "certificateFile": null,
       "certificatePassword": null,
