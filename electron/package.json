@@ -1,6 +1,8 @@
 {
   "name": "newsroom-desktop",
   "version": "1.0.0",
+  "description": "Desktop application for NEWSROOM",
+  "author": "ifecodes",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -10,9 +12,21 @@
     "appId": "com.ifecodes.newsroom",
     "productName": "NEWSROOM",
     "directories": { "output": "dist-electron" },
-    "win": { "target": "nsis" },
-    "mac": { "target": "dmg" },
-    "linux": { "target": "AppImage" }
+    "files": [
+      "main.js",
+      {
+        "from": "../dist",
+        "to": "dist",
+        "filter": ["**/*"]
+      }
+    ],
+    "win": {
+      "target": [{ "target": "portable", "arch": ["x64"] }],
+      "certificateFile": null,
+      "certificatePassword": null,
+      "sign": null,
+      "signingHashAlgorithms": null
+  }
   },
   "devDependencies": {
     "electron": "^34.0.0",

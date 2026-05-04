@@ -1,5 +1,11 @@
-const { app, BrowserWindow, Menu, globalShortcut } = require('electron')
+const { app, BrowserWindow, Menu, protocol, net } = require('electron')
 const path = require('path')
+const url = require('url')
+
+// Register the scheme as privileged
+protocol.registerSchemesAsPrivileged([
+  { scheme: 'app', privileges: { standard: true, secure: true, supportFetchAPI: true } }
+])
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -8,10 +14,22 @@ function createWindow() {
     minWidth: 900,
     minHeight: 600,
     title: 'NEWSROOM',
-    webPreferences: { contextIsolation: true }
+    webPreferences: { 
+      contextIsolation: true,
+      nodeIntegration: false
+    }
   })
 
-  win.loadFile(path.join(__dirname, '../dist/index.html'))
+  // Set up the custom protocol handler
+  protocol.handle('app', (request) => {
+    const urlPath = new URL(request.url).pathname
+    // When packaged, dist is in the same folder as main.js
+    const baseDir = app.isPackaged ? __dirname : path.join(__dirname, '..')
+    const filePath = path.join(baseDir, 'dist', urlPath === '/' ? 'index.html' : urlPath)
+    return net.fetch(url.pathToFileURL(filePath).toString())
+  })
+
+  win.loadURL('app://./')
 
   const menu = Menu.buildFromTemplate([
     {
@@ -36,7 +54,8 @@ function createWindow() {
         { role: 'reload' },
         { role: 'togglefullscreen' },
         { role: 'zoomIn' },
-        { role: 'zoomOut' }
+        { role: 'zoomOut' },
+        { role: 'toggleDevTools' }
       ]
     },
     {
