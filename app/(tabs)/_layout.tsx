@@ -13,6 +13,7 @@ import {
   APP_RED,
 } from "../../utils/constants";
 import { loadSavedInterests } from "../../utils/storage";
+import { useKeyboardShortcuts } from "@/utils/useKeyboardShortcuts";
 
 type IconName = ComponentProps<typeof MaterialCommunityIcons>["name"];
 
@@ -24,6 +25,8 @@ export default function TabsLayout() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+
+  useKeyboardShortcuts();
 
   useEffect(() => {
     loadSavedInterests().then((savedInterests) => {
