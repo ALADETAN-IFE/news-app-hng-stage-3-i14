@@ -254,7 +254,6 @@ Download pre-built desktop executables:
 ## Web Deployment
 
 The web app is deployed to Expo using `eas deploy --prod` and is available at [https://newsroom.expo.app/](https://newsroom.expo.app/). It includes:
-- Full offline support via service worker
 - Responsive design (mobile, tablet, desktop)
 - All core features (search, feed, saved articles, auth)
 - Same keyboard navigation as desktop app
