@@ -1,164 +1,149 @@
-# Smart Utility Toolkit Mobile App
+# NEWSROOM Mobile App
 
-Smart Utility Toolkit is a React Native plus Expo app built for the HNG Mobile track.
+NEWSROOM is a React Native app built with Expo for the HNG Stage 3 mobile task. It is a news browsing app with a dark UI, tab navigation, auth screens, article views, saved content, and real-time search.
 
-It focuses on practical conversion tools and a local-first task manager, with clean UI patterns, file-based routing, and persistent storage.
+This repository currently implements the News option from [`task.md`](task.md): article feeds, category browsing, search, article details, offline caching, error handling, loading states, and animations.
 
-## Live Demo
+## What The App Does
 
-- Appetize preview link: [Smart Utility Toolkit on Appetize](https://appetize.io/app/b_6yklmmpzvcw2ympswks2urbkfa)
+- Welcome screen with get started and sign in entry points
+- Auth flow with sign in, sign up, and forgot password screens
+- Responsive tab navigation for Feeds, Events, Search, and Saved
+- Explore modal for interest selection when no saved interests exist
+- Feeds screen with featured story and article lists
+- Events screen with filters and event cards
+- Saved screen with saved article layout and filtering UI
+- Search screen powered by Guardian API consumption
+- Article detail and category detail screens
+- Bookmarking and local persistence for saved articles and interests
 
-## Why I Built This
+## APIs Used
 
-This project was built as a hands-on mobile development workflow:
+- [The Guardian API](https://open-platform.theguardian.com/) for top stories, category feeds, article details, and keyword search
+- [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) for offline caching, saved articles, and saved interests
 
-- Designing a modern utility-focused mobile UI
-- Managing state across multiple tabs and feature modules
-- Persisting user data with AsyncStorage
-- Implementing complete create, read, update, and delete task operations
-- Building converter tools with reusable configuration-driven logic
-- Navigating screens and tabs with Expo Router
+The app uses environment variables for the Guardian API base URL and API key.
 
-## Features
+## Features That Match The Task
 
-- Length converter with metric and imperial units
-- Temperature converter for Celsius, Fahrenheit, and Kelvin
-- Weight converter with common unit options
-- Task manager with add, edit, delete, and complete actions
-- Optional due date picker for tasks
-- Inline form validation for title and description
-- Progress tracker for completed versus total tasks
-- Smooth local state updates for task actions 
-- Offline-first behavior for both converters and tasks
-- Local persistence with AsyncStorage
+- Article Feed with headlines, images, descriptions, publication dates, and source information
+- Category Browsing through tabs and explore category cards
+- Article Search with debounced keyword search and live results
+- Article Details screen with save/bookmark support
+- Offline Caching for feed/search/article responses through AsyncStorage-backed cache entries
+- Error Handling for network failures, API failures, empty results, and invalid search queries
+- Loading States with activity indicators and empty-state feedback
+
+## Animations
+
+The app includes animation work in multiple places:
+
+- Screen and modal motion using Expo Router navigation plus the explore modal slide-up presentation
+- Animated list items in search and feed screens using React Native Reanimated entrance animations
+- Bookmark and modal interactions that provide responsive visual feedback
 
 ## Tech Stack
 
-- Framework: Expo (React Native)
-- Language: TypeScript
-- Routing: Expo Router (file-based routing)
-- Storage: @react-native-async-storage/async-storage
-- Date Input: @react-native-community/datetimepicker
-- Styling: NativeWind (Tailwind CSS for React Native)
-- Icons: @expo/vector-icons (Ionicons)
-- Build/Release: EAS Build
+- Expo SDK 54
+- React Native
+- TypeScript
+- Expo Router
+- NativeWind / Tailwind CSS
+- React Native Reanimated
+- AsyncStorage
+- React Native Safe Area Context
+- Expo Vector Icons
 
 ## Project Structure
 
 ```text
 app/
-	_layout.tsx                # Root layout and splash overlay
-	global.css                 # Global NativeWind styles
+	_layout.tsx
+	index.tsx
+	auth/
+		_layout.tsx
+		signin.tsx
+		signup.tsx
+		forgot-password.tsx
 	(tabs)/
-		_layout.tsx             # Bottom tab navigation
-		index.tsx               # Redirect entry for tabs
-		length.tsx              # Length converter screen
-		temperature.tsx         # Temperature converter screen
-		weight.tsx              # Weight converter screen
-		tasks.tsx               # Task manager screen
+		_layout.tsx
+		feeds.tsx
+		events.tsx
+		saved.tsx
+		search.tsx
+		explore.tsx
+		explore/[category].tsx
+		article/[id].tsx
 
 components/
-	ConverterTabScreen.tsx     # Shared converter tab shell
-	ToolkitCard.tsx            # Converter interaction card
-	TaskComponents.tsx         # Task item and task form UI
+	ExploreModal.tsx
+	Footer.tsx
+	shared/
+	ui/
 
 utils/
-	toolkits.ts                # Converter configs and conversion logic
-	taskStorage.ts             # AsyncStorage task CRUD helpers
+	api.ts
+	constants.ts
+	storage.ts
 
-assets/
-	images/                    # App icon and splash assets
+types/
+	index.ts
 ```
 
-## Getting Started (Local Development)
+## Setup
 
-### Prerequisites
-
-- Node.js LTS (Node 20 recommended for Expo SDK 54)
-- npm
-- Expo tooling via npx
-- Android Studio emulator and/or iOS simulator (Mac for iOS simulator)
-
-### Install Dependencies
+### Install dependencies
 
 ```bash
 npm install
 ```
 
-### Run the App
+### Configure environment
+
+Create a `.env` file in the mobile project root with:
+
+```bash
+EXPO_PUBLIC_The_Guardian_API_BASE_URL=https://content.guardianapis.com
+EXPO_PUBLIC_GUARDIAN_API_KEY=your_news_api_key
+```
+
+### Run the app
 
 ```bash
 npm run start
 ```
 
-Then choose one of:
-
-- a for Android emulator
-- i for iOS simulator
-- w for web
-- or scan the QR code with Expo Go
+Then open it with Expo Go, Android emulator, iOS simulator, or web.
 
 ## Available Scripts
 
-- npm run start - Start Expo development server
-- npm run dev - Start with Expo dev client
-- npm run android - Open Android flow
-- npm run ios - Open iOS flow
-- npm run web - Open web preview
-- npm run lint - Run lint checks
-- npm run build - Build Android plus iOS with EAS
-- npm run buildAndroid - Build Android with EAS
-- npm run buildiOS - Build iOS with EAS
+- `npm run start` - Start the Expo dev server
+- `npm run dev` - Start Expo with dev client mode
+- `npm run android` - Launch Android
+- `npm run ios` - Launch iOS
+- `npm run lint` - Run lint checks
 
-## Data Model
+## Screenshots / Media
 
-Each task is stored with this shape:
+Add your screenshots or screen recordings here before submission.
 
-```ts
-type Task = {
-  id: string;
-  title: string;
-  description: string;
-  completed: boolean;
-  createdAt: number;
-  updatedAt: number;
-  dueDate?: number;
-};
-```
+- Home / Feeds
+- Search results
+- Article details
+- Explore modal
 
-Tasks are saved in local device storage under the @smart_toolkit_tasks key.
+## Documentation Post
 
-## Learning Outcomes from This Project
+Add your LinkedIn or X post link here before submission.
 
-- Building a multi-feature mobile app under one coherent design system
-- Structuring logic into tab screens, reusable components, and utility modules
-- Managing async operations and fallback UI states for data loading
-- Implementing form validation and inline error display in React Native
-- Building and iterating UI for both utility and task management flows
+## Notes
 
-## App Configuration
-
-- App Name: Smart Utility Toolkit
-- Package / Bundle ID: com.ifecodes.smartutilitytoolkit
-- Expo project owner: ifecodes
-- Scheme: smartutilitytoolkit
-
-## Roadmap / Possible Improvements
-
-- Add task filtering and search
-- Add task sort options (newest, oldest, completed first)
-- Add overdue highlighting and reminder notifications
-- Add cloud sync support
-- Add unit and integration tests
-- Add subtle tab transition animation polish
+- Auth is UI-first for this task and routes into the main news experience.
+- Saved interests are stored locally on device.
+- Search and feed data are cached locally to reduce repeated network calls.
+- The app shows user-friendly messages for no internet, API failures, and empty search results.
 
 ## Author
 
-- Name: Fortune Ife Aladetan
-- Email: [contact@ifecodes.xyz](mailto:fortuneifealadetan01@gmail.com)
+- Fortune Ife Aladetan
 - GitHub: [ALADETAN-IFE](https://github.com/ALADETAN-IFE)
-- Portfolio: [ifecodes.xyz](https://www.ifecodes.xyz)
-
-## License
-
-This project is currently for learning and portfolio purposes.
