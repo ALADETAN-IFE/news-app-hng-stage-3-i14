@@ -11,6 +11,7 @@
     "buildiOS": "eas build --profile production --platform ios",
     "build:prod": "eas build --platform android --profile production",
     "build:apk": "eas build --platform android --profile preview",
+    "build:web": "npx expo export -p web",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo run:android",
     "ios": "expo run:ios",
