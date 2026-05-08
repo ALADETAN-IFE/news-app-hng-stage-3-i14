@@ -5,29 +5,40 @@
   "author": "ifecodes",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "node init && electron .",
     "dist": "electron-builder --win"
   },
   "build": {
     "appId": "com.ifecodes.newsroom",
     "productName": "NEWSROOM",
-    "directories": { "output": "dist-electron" },
+    "directories": {
+      "output": "dist-electron"
+    },
     "files": [
       "main.js",
       {
         "from": "../dist",
         "to": "dist",
-        "filter": ["**/*"]
+        "filter": [
+          "**/*"
+        ]
       }
     ],
     "win": {
       "icon": "../assets/images/icon_512.png",
-      "target": [{ "target": "portable", "arch": ["x64"] }],
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
       "certificateFile": null,
       "certificatePassword": null,
       "sign": null,
       "signingHashAlgorithms": null
-  }
+    }
   },
   "devDependencies": {
     "electron": "^34.0.0",
