@@ -5,6 +5,7 @@ import {
   Image,
   FlatList,
   RefreshControl,
+  DeviceEventEmitter,
 } from "react-native";
 import { useRouter } from "expo-router";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -187,9 +188,9 @@ function NewsCard({
 
 export default function FeedsScreen() {
   const router = useRouter();
-  const [selectedCategory, setSelectedCategory] = useState("top");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [categories, setCategories] = useState<Category[]>([
-    { id: "top", label: "Top Stories", color: "#EE343B" },
+    // { id: "top", label: "Top Stories", color: "#EE343B" },
   ]);
   const [articles, setArticles] = useState<NewsroomArticle[]>([]);
   const [loading, setLoading] = useState(true);
@@ -198,11 +199,11 @@ export default function FeedsScreen() {
   const [savedIds, setSavedIds] = useState<Set<string>>(new Set());
   const listKey = useRef(0);
 
-  useEffect(() => {
+  const loadSavedData = () => {
     loadSavedArticles().then((saved) => {
       setSavedIds(new Set(saved.map((a) => a.id)));
     });
-
+  
     loadSavedInterests().then((saved) => {
       if (saved && saved.length > 0) {
         const mapped = saved.map((id) => {
@@ -210,17 +211,17 @@ export default function FeedsScreen() {
             (i) => i.category === id,
           );
           return {
-            id,
+            id: id === "Top Stories" ? "top" : id,
             label: interest?.label || id.charAt(0).toUpperCase() + id.slice(1),
           };
         });
         setCategories([
-          { id: "top", label: "Top Stories", color: "#EE343B" },
+          // { id: "top", label: "Top Stories", color: "#EE343B" },
           ...mapped,
         ]);
       } else {
         setCategories([
-          { id: "top", label: "Top Stories", color: "#EE343B" },
+          // { id: "top", label: "Top Stories", color: "#EE343B" },
           // { id: "business", label: "Business" },
           // { id: "technology", label: "Technology" },
           // { id: "world", label: "World" },
@@ -228,7 +229,25 @@ export default function FeedsScreen() {
         ]);
       }
     });
-  }, []);
+
+    if (!selectedCategory) {
+      setSelectedCategory("top");
+    }
+  }
+
+  useEffect(() => {
+    loadSavedData();
+
+    const subscription = DeviceEventEmitter.addListener(
+      "interestsChanged",
+      () => {
+        console.log("Interests changed, reloading data...");
+        loadSavedData();
+      },
+    );
+
+    return () => subscription.remove();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadArticles = useCallback(
     async (category: string, isRefresh = false) => {

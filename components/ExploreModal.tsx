@@ -6,6 +6,7 @@ import {
   Pressable,
   ScrollView,
   TextInput,
+  DeviceEventEmitter,
 } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { COUNTRY_OPTIONS, EXPLORE_INTERESTS } from "../utils/constants";
@@ -52,6 +53,8 @@ export default function ExploreModal({ visible, onClose }: Props) {
         : [...selected, value]
       : selected;
     await saveInterests(nextSelected);
+    // await saveInterests([]);
+    DeviceEventEmitter.emit("interestsChanged", nextSelected);
     onClose();
   };
   const skip = async () => {
@@ -97,13 +100,13 @@ export default function ExploreModal({ visible, onClose }: Props) {
             <View className="flex-row flex-wrap gap-2 border-b border-[#27292D] pb-4">
               {categories.map((category) => {
                 const active = selected.includes(
-                  category.toLowerCase().replace(/\s+/g, "-"),
+                  category.toLowerCase().split(" ").map(word=> word.charAt(0).toUpperCase() + word.slice(1)).join(" "),
                 );
                 return (
                   <Pressable
                     key={category}
                     onPress={() =>
-                      toggle(category.toLowerCase().replace(/\s+/g, "-"))
+                      toggle(category.toLowerCase().split(" ").map(word=> word.charAt(0).toUpperCase() + word.slice(1)).join(" "))
                     }
                     className={`border px-3 py-2 ${active ? "border-[#EE343B] bg-[#1C1D21]" : "border-[#27292D] bg-transparent"}`}
                   >

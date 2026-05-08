@@ -114,9 +114,12 @@ export default function ArticleDetailsScreen() {
   });
 
   return (
-    <SafeAreaView className="flex-1 bg-[#0C0D0F]" edges={["bottom"]}>
+    <SafeAreaView className="flex-1 bg-[#0C0D0F]">
       <View className="flex-row items-center justify-between px-4 py-3 border-b border-[#27292D] bg-[#0C0D0F] md:hidden">
-        <Pressable onPress={() => router.back()} className="flex-row items-center gap-1.5">
+        <Pressable
+          onPress={() => router.back()}
+          className="flex-row items-center gap-1.5"
+        >
           <MaterialCommunityIcons name="arrow-left" size={22} color="#F0F2F5" />
         </Pressable>
         <View className="flex-row gap-1">
@@ -128,18 +131,30 @@ export default function ArticleDetailsScreen() {
             />
           </Pressable>
           <Pressable className="p-2">
-            <MaterialCommunityIcons name="share-variant" size={22} color="#F0F2F5" />
+            <MaterialCommunityIcons
+              name="share-variant"
+              size={22}
+              color="#F0F2F5"
+            />
           </Pressable>
         </View>
       </View>
 
       <ScrollView contentContainerStyle={{ paddingBottom: 0 }}>
         <View className="w-full mx-auto w-full pt-6 md:pt-10">
-
           {isLargeScreen && (
-            <Pressable onPress={() => router.back()} className="flex-row items-center gap-2 mb-6 px-4">
-              <MaterialCommunityIcons name="arrow-left" size={16} color="#9498A2" />
-              <Text className="text-[#9498A2] text-[11px] font-bold tracking-widest uppercase">BACK</Text>
+            <Pressable
+              onPress={() => router.back()}
+              className="flex-row items-center gap-2 mb-6 px-4"
+            >
+              <MaterialCommunityIcons
+                name="arrow-left"
+                size={16}
+                color="#9498A2"
+              />
+              <Text className="text-[#9498A2] text-[11px] font-bold tracking-widest uppercase">
+                BACK
+              </Text>
             </Pressable>
           )}
 
@@ -151,7 +166,11 @@ export default function ArticleDetailsScreen() {
                 </Text>
               </View>
               <View className="flex-row items-center gap-1">
-                <MaterialCommunityIcons name="clock-outline" size={12} color="#9498A2" />
+                <MaterialCommunityIcons
+                  name="clock-outline"
+                  size={12}
+                  color="#9498A2"
+                />
                 <Text className="text-[#9498A2] text-[10px] font-bold tracking-widest uppercase">
                   ABOUT 12 HOURS AGO
                 </Text>
@@ -169,7 +188,8 @@ export default function ArticleDetailsScreen() {
             )}
 
             <Text className="text-[#9498A2] text-[10px] font-bold tracking-widest uppercase">
-              PUBLISHED {formattedDate.toUpperCase()} - {timeString.toUpperCase()}
+              PUBLISHED {formattedDate.toUpperCase()} -{" "}
+              {timeString.toUpperCase()}
             </Text>
           </View>
 
@@ -190,27 +210,45 @@ export default function ArticleDetailsScreen() {
                 className="flex-row items-center justify-between p-3 bg-[#15171B] border-b border-[#27292D]"
               >
                 <View className="flex-row items-center gap-2">
-                  <MaterialCommunityIcons name="robot-outline" size={16} color="#EEB868" />
-                  <Text className="text-[#EEB868] text-[10px] font-bold tracking-widest uppercase">AI BRIEF</Text>
-                  <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase"> • 10-SECOND READ</Text>
+                  <MaterialCommunityIcons
+                    name="robot-outline"
+                    size={16}
+                    color="#EEB868"
+                  />
+                  <Text className="text-[#EEB868] text-[10px] font-bold tracking-widest uppercase">
+                    AI BRIEF
+                  </Text>
+                  <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase">
+                    {" "}
+                    • 10-SECOND READ
+                  </Text>
                 </View>
-                <MaterialCommunityIcons name={aiBriefOpen ? "chevron-up" : "chevron-down"} size={20} color="#9498A2" />
+                <MaterialCommunityIcons
+                  name={aiBriefOpen ? "chevron-up" : "chevron-down"}
+                  size={20}
+                  color="#9498A2"
+                />
               </Pressable>
 
               {aiBriefOpen && (
                 <View className="p-4 gap-5">
                   <View className="gap-2">
-                    <Text className="text-[#EE343B] text-[11px] font-bold tracking-widest uppercase">TL;DR</Text>
+                    <Text className="text-[#EE343B] text-[11px] font-bold tracking-widest uppercase">
+                      TL;DR
+                    </Text>
                     <View className="flex-row">
                       <Text className="text-[#F0F2F5] text-[14px] mr-2">•</Text>
                       <Text className="text-[#F0F2F5] text-[14px] leading-relaxed flex-1">
-                        Key personnel changes during game development can significantly impact a project's creative direction.
+                        Key personnel changes during game development can
+                        significantly impact a project&apos;s creative
+                        direction.
                       </Text>
                     </View>
                     <View className="flex-row">
                       <Text className="text-[#F0F2F5] text-[14px] mr-2">•</Text>
                       <Text className="text-[#F0F2F5] text-[14px] leading-relaxed flex-1">
-                        The game is now under new leadership following these departures.
+                        The game is now under new leadership following these
+                        departures.
                       </Text>
                     </View>
                     <View className="flex-row">
@@ -222,22 +260,37 @@ export default function ArticleDetailsScreen() {
                   </View>
 
                   <View className="gap-2">
-                    <Text className="text-[#EEB868] text-[11px] font-bold tracking-widest uppercase">WHY IT MATTERS</Text>
+                    <Text className="text-[#EEB868] text-[11px] font-bold tracking-widest uppercase">
+                      WHY IT MATTERS
+                    </Text>
                     <Text className="text-[#9498A2] text-[13px] leading-relaxed">
-                      Leadership changes during game development can significantly impact a project's creative direction, development timeline, and overall success, potentially affecting millions of fans and substantial investments.
+                      Leadership changes during game development can
+                      significantly impact a project&apos;s creative direction,
+                      development timeline, and overall success, potentially
+                      affecting millions of fans and substantial investments.
                     </Text>
                   </View>
 
                   <View className="flex-row items-center justify-between border-t border-[#27292D] pt-3">
                     <View className="flex-row items-center gap-3">
                       <Pressable className="flex-row items-center gap-1">
-                        <MaterialCommunityIcons name="thumb-up-outline" size={14} color="#9498A2" />
+                        <MaterialCommunityIcons
+                          name="thumb-up-outline"
+                          size={14}
+                          color="#9498A2"
+                        />
                       </Pressable>
                       <Pressable className="flex-row items-center gap-1">
-                        <MaterialCommunityIcons name="thumb-down-outline" size={14} color="#9498A2" />
+                        <MaterialCommunityIcons
+                          name="thumb-down-outline"
+                          size={14}
+                          color="#9498A2"
+                        />
                       </Pressable>
                     </View>
-                    <Text className="text-[#EE343B] text-[10px] font-bold tracking-widest uppercase">REGENERATE</Text>
+                    <Text className="text-[#EE343B] text-[10px] font-bold tracking-widest uppercase">
+                      REGENERATE
+                    </Text>
                   </View>
                   <Text className="text-[#9498A2] text-[9px] uppercase tracking-widest">
                     AI generated · may contain errors. Powered by Lovable AI.
@@ -253,8 +306,12 @@ export default function ArticleDetailsScreen() {
             ) : error ? (
               <Text className="text-[#9498A2] text-sm">{error}</Text>
             ) : (
-              <Text className="text-[#F0F2F5] text-base leading-relaxed md:text-lg wrap-balance" numberOfLines={3}>
-                {article.body || "The full article content is only available on the source website."}
+              <Text
+                className="text-[#F0F2F5] text-base leading-relaxed md:text-lg wrap-balance"
+                numberOfLines={3}
+              >
+                {article.body ||
+                  "The full article content is only available on the source website."}
               </Text>
             )}
 
@@ -263,54 +320,102 @@ export default function ArticleDetailsScreen() {
                 onPress={handleOpenInBrowser}
                 className="bg-[#EE343B] flex-row items-center gap-2 px-4 py-2.5 rounded"
               >
-                <MaterialCommunityIcons name="open-in-new" size={16} color="white" />
-                <Text className="text-white text-[11px] font-bold tracking-widest uppercase">READ FULL ARTICLE</Text>
+                <MaterialCommunityIcons
+                  name="open-in-new"
+                  size={16}
+                  color="white"
+                />
+                <Text className="text-white text-[11px] font-bold tracking-widest uppercase">
+                  READ FULL ARTICLE
+                </Text>
               </Pressable>
               <Pressable
                 onPress={handleBookmark}
                 className="border border-[#27292D] flex-row items-center gap-2 px-4 py-2.5 rounded"
               >
-                <MaterialCommunityIcons name={isSaved ? "bookmark" : "bookmark-outline"} size={16} color={isSaved ? "#EE343B" : "white"} />
-                <Text className="text-white text-[11px] font-bold tracking-widest uppercase">SAVE</Text>
+                <MaterialCommunityIcons
+                  name={isSaved ? "bookmark" : "bookmark-outline"}
+                  size={16}
+                  color={isSaved ? "#EE343B" : "white"}
+                />
+                <Text className="text-white text-[11px] font-bold tracking-widest uppercase">
+                  SAVE
+                </Text>
               </Pressable>
               <Pressable className="border border-[#27292D] flex-row items-center gap-2 px-4 py-2.5 rounded">
-                <MaterialCommunityIcons name="share-variant" size={16} color="white" />
-                <Text className="text-white text-[11px] font-bold tracking-widest uppercase">SHARE</Text>
+                <MaterialCommunityIcons
+                  name="share-variant"
+                  size={16}
+                  color="white"
+                />
+                <Text className="text-white text-[11px] font-bold tracking-widest uppercase">
+                  SHARE
+                </Text>
               </Pressable>
             </View>
 
             <Text className="text-[#9498A2] text-xs">
-              Source: <Text className="underline text-[#F0F2F5]">The Guardian</Text>
+              Source:{" "}
+              <Text className="underline text-[#F0F2F5]">The Guardian</Text>
             </Text>
 
             <View className="border border-[#27292D] bg-[#111214] rounded p-4 gap-4">
               <View className="flex-row items-center gap-2">
-                <MaterialCommunityIcons name="robot-outline" size={16} color="#EEB868" />
-                <Text className="text-[#EEB868] text-[10px] font-bold tracking-widest uppercase">ASK AI ABOUT THIS ARTICLE</Text>
+                <MaterialCommunityIcons
+                  name="robot-outline"
+                  size={16}
+                  color="#EEB868"
+                />
+                <Text className="text-[#EEB868] text-[10px] font-bold tracking-widest uppercase">
+                  ASK AI ABOUT THIS ARTICLE
+                </Text>
                 <View className="bg-[#EEB868]/10 px-1.5 py-0.5 rounded">
-                  <Text className="text-[#EEB868] text-[9px] font-bold uppercase">BETA</Text>
+                  <Text className="text-[#EEB868] text-[9px] font-bold uppercase">
+                    BETA
+                  </Text>
                 </View>
               </View>
 
               <Text className="text-[#9498A2] text-sm">
-                The AI only has access to this article — it won't make up facts. Try:
+                The AI only has access to this article — it won&apos;t make up
+                facts. Try:
               </Text>
 
               <View className="flex-row flex-wrap gap-2">
-                {["Summarize this in one sentence.", "What's missing from the story?", "Who are the named sources?", "How could I verify this?"].map((chip) => (
-                  <View key={chip} className="border border-[#27292D] bg-[#15171B] px-3 py-1.5 rounded-full">
+                {[
+                  "Summarize this in one sentence.",
+                  "What's missing from the story?",
+                  "Who are the named sources?",
+                  "How could I verify this?",
+                ].map((chip) => (
+                  <View
+                    key={chip}
+                    className="border border-[#27292D] bg-[#15171B] px-3 py-1.5 rounded-full"
+                  >
                     <Text className="text-[#F0F2F5] text-[11px]">{chip}</Text>
                   </View>
                 ))}
               </View>
 
               <View className="bg-[#0C0D0F] border border-[#27292D] rounded p-3 flex-row items-center justify-center gap-2">
-                <MaterialCommunityIcons name="lock-outline" size={16} color="#9498A2" />
-                <Text className="text-[#9498A2] text-[13px]">{isLoggedIn ? "Ask the AI a question..." : "Sign in to ask the AI"}</Text>
+                <MaterialCommunityIcons
+                  name="lock-outline"
+                  size={16}
+                  color="#9498A2"
+                />
+                <Text className="text-[#9498A2] text-[13px]">
+                  {isLoggedIn
+                    ? "Ask the AI a question..."
+                    : "Sign in to ask the AI"}
+                </Text>
               </View>
 
               <View className="flex-row items-center gap-2">
-                <MaterialCommunityIcons name="alert-outline" size={12} color="#9498A2" />
+                <MaterialCommunityIcons
+                  name="alert-outline"
+                  size={12}
+                  color="#9498A2"
+                />
                 <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase">
                   AI can be wrong. Cross-check before sharing.
                 </Text>
@@ -323,23 +428,43 @@ export default function ArticleDetailsScreen() {
                 className="flex-row items-center justify-between p-3 bg-[#15171B] border-b border-[#27292D]"
               >
                 <View className="flex-row items-center gap-2">
-                  <MaterialCommunityIcons name="text-box-search-outline" size={16} color="#EEB868" />
-                  <Text className="text-[#F0F2F5] text-[10px] font-bold tracking-widest uppercase">SUPPORTING EVIDENCE</Text>
-                  <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase"> 0 ITEMS</Text>
+                  <MaterialCommunityIcons
+                    name="text-box-search-outline"
+                    size={16}
+                    color="#EEB868"
+                  />
+                  <Text className="text-[#F0F2F5] text-[10px] font-bold tracking-widest uppercase">
+                    SUPPORTING EVIDENCE
+                  </Text>
+                  <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase">
+                    {" "}
+                    0 ITEMS
+                  </Text>
                 </View>
-                <MaterialCommunityIcons name={evidenceOpen ? "chevron-up" : "chevron-down"} size={20} color="#9498A2" />
+                <MaterialCommunityIcons
+                  name={evidenceOpen ? "chevron-up" : "chevron-down"}
+                  size={20}
+                  color="#9498A2"
+                />
               </Pressable>
 
               {evidenceOpen && (
                 <View className="p-6 items-center justify-center gap-3">
                   {!isLoggedIn && (
                     <View className="flex-row items-center gap-2">
-                      <MaterialCommunityIcons name="login" size={16} color="#9498A2" />
-                      <Text className="text-[#9498A2] text-[13px]">Sign in to add supporting facts</Text>
+                      <MaterialCommunityIcons
+                        name="login"
+                        size={16}
+                        color="#9498A2"
+                      />
+                      <Text className="text-[#9498A2] text-[13px]">
+                        Sign in to add supporting facts
+                      </Text>
                     </View>
                   )}
                   <Text className="text-[#9498A2] text-[13px] text-center">
-                    No evidence yet. Be the first to add a source, image, or note.
+                    No evidence yet. Be the first to add a source, image, or
+                    note.
                   </Text>
                 </View>
               )}
@@ -351,20 +476,41 @@ export default function ArticleDetailsScreen() {
                 className="flex-row items-center justify-between p-3 bg-[#15171B] border-b border-[#27292D]"
               >
                 <View className="flex-row items-center gap-2">
-                  <MaterialCommunityIcons name="check-decagram-outline" size={16} color="#EF4444" />
-                  <Text className="text-[#F0F2F5] text-[10px] font-bold tracking-widest uppercase">COMMUNITY CHECK</Text>
-                  <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase"> 2 COMMENTS</Text>
+                  <MaterialCommunityIcons
+                    name="check-decagram-outline"
+                    size={16}
+                    color="#EF4444"
+                  />
+                  <Text className="text-[#F0F2F5] text-[10px] font-bold tracking-widest uppercase">
+                    COMMUNITY CHECK
+                  </Text>
+                  <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase">
+                    {" "}
+                    2 COMMENTS
+                  </Text>
                 </View>
                 {isLoggedIn ? (
                   <View className="flex-row items-center gap-2">
                     <View className="bg-[#22C55E]/10 border border-[#22C55E]/30 px-2 py-0.5 rounded flex-row items-center gap-1">
-                      <MaterialCommunityIcons name="check-circle" size={10} color="#22C55E" />
-                      <Text className="text-[#22C55E] text-[9px] font-bold tracking-widest uppercase">LIKELY REAL</Text>
+                      <MaterialCommunityIcons
+                        name="check-circle"
+                        size={10}
+                        color="#22C55E"
+                      />
+                      <Text className="text-[#22C55E] text-[9px] font-bold tracking-widest uppercase">
+                        LIKELY REAL
+                      </Text>
                     </View>
-                    <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase"> 64 VOTES</Text>
+                    <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase">
+                      {" "}
+                      64 VOTES
+                    </Text>
                   </View>
                 ) : (
-                  <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase"> NO VOTES YET</Text>
+                  <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase">
+                    {" "}
+                    NO VOTES YET
+                  </Text>
                 )}
               </Pressable>
 
@@ -372,12 +518,22 @@ export default function ArticleDetailsScreen() {
                 <View className="p-4 gap-6">
                   <View className="gap-2">
                     <View className="flex-row h-1.5 w-full bg-[#27292D] rounded-full overflow-hidden">
-                      <View className="bg-[#22C55E] h-full" style={{ width: '89%' }} />
-                      <View className="bg-[#EF4444] h-full" style={{ width: '11%' }} />
+                      <View
+                        className="bg-[#22C55E] h-full"
+                        style={{ width: "89%" }}
+                      />
+                      <View
+                        className="bg-[#EF4444] h-full"
+                        style={{ width: "11%" }}
+                      />
                     </View>
                     <View className="flex-row justify-between">
-                      <Text className="text-[#22C55E] text-[9px] font-bold tracking-widest uppercase">89% REAL</Text>
-                      <Text className="text-[#EF4444] text-[9px] font-bold tracking-widest uppercase">11% FAKE</Text>
+                      <Text className="text-[#22C55E] text-[9px] font-bold tracking-widest uppercase">
+                        89% REAL
+                      </Text>
+                      <Text className="text-[#EF4444] text-[9px] font-bold tracking-widest uppercase">
+                        11% FAKE
+                      </Text>
                     </View>
                   </View>
 
@@ -397,7 +553,11 @@ export default function ArticleDetailsScreen() {
                     />
                     <View className="p-2 flex-row justify-end">
                       <View className="bg-[#15171B] p-1.5 rounded-full border border-[#27292D]">
-                        <MaterialCommunityIcons name="image-outline" size={16} color="#9498A2" />
+                        <MaterialCommunityIcons
+                          name="image-outline"
+                          size={16}
+                          color="#9498A2"
+                        />
                       </View>
                     </View>
                   </View>
@@ -405,68 +565,124 @@ export default function ArticleDetailsScreen() {
                   <View className="flex-row items-center justify-between">
                     <View className="flex-row items-center gap-2">
                       <View className="w-3 h-3 border border-[#9498A2] rounded-sm" />
-                      <Text className="text-[#9498A2] text-[11px]">I'm a verified reporter / expert</Text>
+                      <Text className="text-[#9498A2] text-[11px]">
+                        I&apos;m a verified reporter / expert
+                      </Text>
                     </View>
                     <Pressable className="bg-[#EE343B] px-3 py-1.5 rounded">
-                      <Text className="text-white text-[10px] font-bold tracking-widest uppercase">POST COMMENT</Text>
+                      <Text className="text-white text-[10px] font-bold tracking-widest uppercase">
+                        POST COMMENT
+                      </Text>
                     </Pressable>
                   </View>
 
                   <Text className="text-[#9498A2] text-[9px] tracking-widest uppercase">
-                    Vote to verification, abuse-handling and precedence are described in /docs/community-fact-check-api
+                    Vote to verification, abuse-handling and precedence are
+                    described in /docs/community-fact-check-api
                   </Text>
 
                   <View className="gap-6 border-t border-[#27292D] pt-6">
                     <View className="gap-2">
                       <View className="flex-row justify-between items-center">
                         <View className="flex-row items-center gap-2">
-                          <Text className="text-[#F0F2F5] font-bold text-[13px]">Maya R.</Text>
+                          <Text className="text-[#F0F2F5] font-bold text-[13px]">
+                            Maya R.
+                          </Text>
                           <View className="bg-[#EEB868] px-1 py-0.5 rounded flex-row items-center gap-0.5">
-                            <MaterialCommunityIcons name="check-decagram" size={10} color="#0C0D0F" />
-                            <Text className="text-[#0C0D0F] text-[8px] font-bold uppercase">VERIFIED</Text>
+                            <MaterialCommunityIcons
+                              name="check-decagram"
+                              size={10}
+                              color="#0C0D0F"
+                            />
+                            <Text className="text-[#0C0D0F] text-[8px] font-bold uppercase">
+                              VERIFIED
+                            </Text>
                           </View>
-                          <Text className="text-[#9498A2] text-[10px] uppercase tracking-widest">REPORTER - THE STANDARD</Text>
+                          <Text className="text-[#9498A2] text-[10px] uppercase tracking-widest">
+                            REPORTER - THE STANDARD
+                          </Text>
                         </View>
-                        <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase">4 DAYS AGO</Text>
+                        <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase">
+                          4 DAYS AGO
+                        </Text>
                       </View>
                       <Text className="text-[#F0F2F5] text-[13px] leading-relaxed">
-                        Cross-checked with two on-the-ground sources — the core claim holds. The casualty figure is still developing.
+                        Cross-checked with two on-the-ground sources — the core
+                        claim holds. The casualty figure is still developing.
                       </Text>
                       <View className="flex-row items-center gap-3 mt-1">
                         <View className="flex-row items-center gap-1">
-                          <MaterialCommunityIcons name="thumb-up-outline" size={12} color="#9498A2" />
-                          <Text className="text-[#9498A2] text-[10px]">REAL • 34</Text>
+                          <MaterialCommunityIcons
+                            name="thumb-up-outline"
+                            size={12}
+                            color="#9498A2"
+                          />
+                          <Text className="text-[#9498A2] text-[10px]">
+                            REAL • 34
+                          </Text>
                         </View>
                         <View className="flex-row items-center gap-1">
-                          <MaterialCommunityIcons name="thumb-down-outline" size={12} color="#9498A2" />
-                          <Text className="text-[#9498A2] text-[10px]">FAKE • 2</Text>
+                          <MaterialCommunityIcons
+                            name="thumb-down-outline"
+                            size={12}
+                            color="#9498A2"
+                          />
+                          <Text className="text-[#9498A2] text-[10px]">
+                            FAKE • 2
+                          </Text>
                         </View>
                         <View className="flex-1 h-1 bg-[#27292D] rounded-full overflow-hidden ml-2">
-                          <View className="bg-[#22C55E] h-full" style={{ width: '94%' }} />
+                          <View
+                            className="bg-[#22C55E] h-full"
+                            style={{ width: "94%" }}
+                          />
                         </View>
                       </View>
                     </View>
 
                     <View className="gap-2">
                       <View className="flex-row justify-between items-center">
-                        <Text className="text-[#F0F2F5] font-bold text-[13px]">alex_89</Text>
-                        <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase">4 DAYS AGO</Text>
+                        <Text className="text-[#F0F2F5] font-bold text-[13px]">
+                          alex_89
+                        </Text>
+                        <Text className="text-[#9498A2] text-[10px] tracking-widest uppercase">
+                          4 DAYS AGO
+                        </Text>
                       </View>
                       <Text className="text-[#F0F2F5] text-[13px] leading-relaxed">
-                        The image in this story is from a 2019 event. Reverse image search returns earlier results.
+                        The image in this story is from a 2019 event. Reverse
+                        image search returns earlier results.
                       </Text>
                       <View className="flex-row items-center gap-3 mt-1">
                         <View className="flex-row items-center gap-1">
-                          <MaterialCommunityIcons name="thumb-up-outline" size={12} color="#9498A2" />
-                          <Text className="text-[#9498A2] text-[10px]">REAL • 3</Text>
+                          <MaterialCommunityIcons
+                            name="thumb-up-outline"
+                            size={12}
+                            color="#9498A2"
+                          />
+                          <Text className="text-[#9498A2] text-[10px]">
+                            REAL • 3
+                          </Text>
                         </View>
                         <View className="flex-row items-center gap-1">
-                          <MaterialCommunityIcons name="thumb-down-outline" size={12} color="#9498A2" />
-                          <Text className="text-[#9498A2] text-[10px]">FAKE • 11</Text>
+                          <MaterialCommunityIcons
+                            name="thumb-down-outline"
+                            size={12}
+                            color="#9498A2"
+                          />
+                          <Text className="text-[#9498A2] text-[10px]">
+                            FAKE • 11
+                          </Text>
                         </View>
                         <View className="flex-1 h-1 bg-[#27292D] rounded-full overflow-hidden ml-2 flex-row">
-                          <View className="bg-[#22C55E] h-full" style={{ width: '21%' }} />
-                          <View className="bg-[#EF4444] h-full" style={{ width: '79%' }} />
+                          <View
+                            className="bg-[#22C55E] h-full"
+                            style={{ width: "21%" }}
+                          />
+                          <View
+                            className="bg-[#EF4444] h-full"
+                            style={{ width: "79%" }}
+                          />
                         </View>
                       </View>
                     </View>
@@ -475,8 +691,14 @@ export default function ArticleDetailsScreen() {
               ) : communityCheckOpen && !isLoggedIn ? (
                 <View className="p-6 items-center justify-center gap-3">
                   <View className="flex-row items-center gap-2">
-                    <MaterialCommunityIcons name="login" size={16} color="#9498A2" />
-                    <Text className="text-[#9498A2] text-[13px]">Sign in to post a comment or fact-check</Text>
+                    <MaterialCommunityIcons
+                      name="login"
+                      size={16}
+                      color="#9498A2"
+                    />
+                    <Text className="text-[#9498A2] text-[13px]">
+                      Sign in to post a comment or fact-check
+                    </Text>
                   </View>
                   <Text className="text-[#9498A2] text-[13px] text-center">
                     Be the first to weigh in.

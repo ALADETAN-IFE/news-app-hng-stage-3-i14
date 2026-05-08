@@ -66,7 +66,7 @@ export default function EventsScreen() {
               </Text>
             </View>
             <Text className="text-white text-2xl font-bold mb-2 font-serif">
-              What's happening in Lagos
+              What&apos;s happening in Lagos
             </Text>
             <Text className="text-[#9498A2] text-xs leading-relaxed">
               Upcoming tech conferences, hackathons, meetups, and developer
@@ -225,7 +225,7 @@ export default function EventsScreen() {
               No events match your filters
             </Text>
             <Text className="text-[#9498A2] text-xs text-center leading-relaxed">
-              We couldn't find any tech events in{" "}
+              We couldn&apos;t find any tech events in{" "}
               <Text className="font-bold text-[#CCC]">Lagos</Text>. Try widening
               your filters or picking another city.
             </Text>

@@ -12,22 +12,22 @@ export const GUARDIAN_BASE_URL = "https://content.guardianapis.com";
  * An empty string means no section filter (top stories).
  */
 export const CATEGORY_TO_GUARDIAN_SECTION: Record<string, string> = {
-  top: "",
-  business: "business",
-  technology: "technology",
-  world: "world",
-  sports: "sport",
-  science: "science",
-  health: "society",
-  entertainment: "culture",
+  "Top Stories": "top",
+  Business: "business",
+  Technology: "technology",
+  World: "world",
+  Sports: "sport",
+  Science: "science",
+  Health: "society",
+  Entertainment: "culture",
 };
 export const SAVED_INTERESTS_KEY = "selectedInterests";
 export const TAB_ITEMS: TabItem[] = [
   {
     name: "feeds",
     label: "FEEDS",
-    icon: "bookmark-outline",
-    activeIcon: "bookmark",
+    icon: "newspaper-variant-outline",
+    activeIcon: "newspaper-variant",
   },
   {
     name: "events",
@@ -35,7 +35,12 @@ export const TAB_ITEMS: TabItem[] = [
     icon: "calendar-outline",
     activeIcon: "calendar",
   },
-  { name: "search", label: "SEARCH", icon: "magnify", activeIcon: "magnify" },
+  {
+    name: "search",
+    label: "SEARCH",
+    icon: "magnify",
+    activeIcon: "magnify",
+  },
   {
     name: "saved",
     label: "SAVED",
