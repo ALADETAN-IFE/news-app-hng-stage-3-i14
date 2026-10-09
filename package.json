@@ -4,9 +4,9 @@
   "version": "1.1.0",
   "description": "HNG Mobile Stage 3 Task: News App with Animations, Offline Caching, and Error Handling - hng-stage-3(i14)",
   "scripts": {
-    "start": "expo start",
-    "dev": "expo start --dev-client",
-    "build": "eas build --profile production --platform all",
+    "start": "node api.js && expo start",
+    "dev": "node api.js && expo start --dev-client",
+    "build": "node api.js && eas build --profile production --platform all",
     "buildAndroid": "eas build --profile production --platform android",
     "buildiOS": "eas build --profile production --platform ios",
     "build:prod": "eas build --platform android --profile production",
