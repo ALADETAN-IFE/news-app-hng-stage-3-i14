@@ -5,7 +5,7 @@
   "author": "ifecodes",
   "main": "main.js",
   "scripts": {
-    "start": "node init && electron .",
+    "start": "electron .",
     "dist": "electron-builder --win"
   },
   "build": {
